@@ -18,25 +18,25 @@ This project use the following electronic components:
 
 ### Screenshots
 
-| Diagram A                          | Diagram B                          |
-|------------------------------------|------------------------------------|
-| ![](Resources/Diagrams-01.jpg)  | ![](Resources/Diagrams-02.jpg)  |
+| Diagram - Schematics                           | Diagram - Physical Layout                      |
+|------------------------------------------------|------------------------------------------------|
+| ![](Resources/01-diagram-schematics.jpg)       | ![](Resources/02-diagram-physical-layout.jpg)  |
 
-| Prototype                          |  Prototype                         |
-|------------------------------------|------------------------------------|
-| ![](Resources/Prototype-01.jpg) | ![](Resources/05-Prototype-02.jpg) |
+| Prototype                                      | Building                                       |
+|------------------------------------------------|------------------------------------------------|
+| ![](Resources/04-prototype.jpg)                | ![](Resources/06-building.jpg)                 |
 
-| Building                           |  Building                          |
-|------------------------------------|------------------------------------|
-| ![](Resources/Building-01.jpg)  | ![](Resources/Building-04.jpg)  |
+| Building                                       | Building (Finished)                            |
+|------------------------------------------------|------------------------------------------------|
+| ![](Resources/07-building.jpg)                 | ![](Resources/08-building-finished.jpg)        |
 
-| Building                           |  Building                          |
-|------------------------------------|------------------------------------|
-| ![](Resources/Building-08.jpg)  | ![](Resources/Building-09.jpg)  |
+| Building (Finished)                            | Box Shaping                                    |
+|------------------------------------------------|------------------------------------------------|
+| ![](Resources/09-building-finished.jpg)        | ![](Resources/11-box-shaping.jpg)              |
 
-| Project Final                      | Project Final (YouTube video)      |
-|------------------------------------|------------------------------------|
-| ![](Resources/Building-11.jpg)  | [![](Resources/Proyect-Final.jpg)](https://youtu.be/) |
+| Project Final                                  | Project Final (YouTube video)                  |
+|------------------------------------------------|------------------------------------------------|
+| ![](Resources/13-project-final.jpg)            | [![](Resources/14-project-final.jpg)](https://youtu.be/qu201MSCXys) |
 
 See 'Rescources' sub-folder for more pictures of the proyect.
 
