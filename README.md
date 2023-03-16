@@ -1,4 +1,4 @@
-# Memory Game (Simon)
+# Memory-Game
 
 Arduino code for a 4 coloured memory game (Simon) 
 
