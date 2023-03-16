@@ -1,5 +1,5 @@
 /*
-Memory Game v1.0
+Memory Game v1.3
 
 Created by: Andres Garcia Alves <andres.garcia.alves@gmail.com>
 Microcontroller: Arduino Nano (ATMega328 @16Mhz)
