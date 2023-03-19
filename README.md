@@ -47,7 +47,8 @@ See 'Rescources' sub-folder for more pictures of the proyect.
 Version 1.0, 2023.03.08 - Initial release.  
 Version 1.1, 2023.03.09 - Refactor for mudularity (adding concept of micro-commands for user inteccions).  
 Version 1.2, 2023.03.10 - Improved animations.  
-Version 1.3, 2023.03.15 - Pinout rearrange for easy soldering.
+Version 1.3, 2023.03.15 - Pinout rearrange for easy soldering.  
+Version 1.4, 2023.03.18 - Adding game finished sequence.
 
 &nbsp;
 
