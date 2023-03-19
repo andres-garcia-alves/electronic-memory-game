@@ -10,13 +10,17 @@ void setLedsByMaskedBits(byte);
 
 
 void updateDisplay(byte currentLevel) {
+  String currentLevelText;
 
   // enable current digit (LOW enable, HIGH disable)
   digitalWrite(DISPLAY_DIGIT_0, (currentDigit == 1) ? LOW : HIGH);  // left digit
   digitalWrite(DISPLAY_DIGIT_1, (currentDigit == 0) ? LOW : HIGH);  // right digit
 
-  // retrieve & display character for the current digit
-  String currentLevelText = (currentLevel < 10) ? "0" + String(currentLevel) : String(currentLevel);
+  // build string to display
+  if (currentLevel < 10)            { currentLevelText = "0" + String(currentLevel); }
+  if (currentLevel == GAME_LEVELS)  { currentLevelText = "--"; }
+
+  // display character for the current digit
   displayCharacter(currentLevelText.charAt(currentDigit));
 
   // move to next digit (valid range 0-1)
@@ -36,6 +40,7 @@ void displayCharacter(char character) {
     case '7': maskedBits = 0b00000111; break;
     case '8': maskedBits = 0b01111111; break;
     case '9': maskedBits = 0b01100111; break;
+    case '-': maskedBits = 0b01000000; break;
     default:  maskedBits = 0b00000000;
   }
 

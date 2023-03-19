@@ -2,8 +2,9 @@
 #define COMMANDS_H
 
 // functions declaration
-// void clearCommands();
-// void createGameModeCommand(eGameMode);
+void buildRandomColorSequence();
+byte getPlayerSequencePosition();
+void clearPlayerSequence();
 
 
 void initializeCommand() {
@@ -16,7 +17,7 @@ void initializeCommand() {
   #if DEBUG
   sizeofCommandStruct();
   debugColorArrays();
-  #endif 
+  #endif
 }
 
 void gameModeCommand(eGameMode newGameMode) {
@@ -25,6 +26,7 @@ void gameModeCommand(eGameMode newGameMode) {
 
 void waitOperationCommand() {
   // the delay part is done by CommandsManager
+
   digitalWrite(LED_RED, LOW);
   digitalWrite(LED_BLUE, LOW);
   digitalWrite(LED_YELLOW, LOW);
@@ -45,10 +47,14 @@ void buttonPressedCommand(byte packedInput) { // stInput input
   digitalWrite(LED_YELLOW, input.yellowButton);
   digitalWrite(LED_GREEN, input.greenButton);
 
+  #if DEBUG
+  debugColorArrays();
+  #endif
+
   // basic validations
   byte sumButtons = input.redButton + input.blueButton + input.yellowButton + input.greenButton;
   if (sumButtons == 0) { return; }  // no buttom pressed (teorically unreachable)
-  if (sumButtons >= 2) { gameMode = eGameMode::FINISH; return; }  // more that a single buttom pressed
+  if (sumButtons >= 2) { gameMode = eGameMode::WRONG_INPUT; return; }  // more that a single buttom pressed
 
   // wrong buttom pressed validation
   byte playerPosition = getPlayerSequencePosition();
@@ -56,7 +62,8 @@ void buttonPressedCommand(byte packedInput) { // stInput input
 
   if (input.redButton && currentColor != eColor::RED || input.blueButton && currentColor != eColor::BLUE ||
       input.yellowButton && currentColor != eColor::YELLOW || input.greenButton && currentColor != eColor::GREEN) {
-    gameMode = eGameMode::FINISH; return;
+    clearPlayerSequence();
+    gameMode = eGameMode::WRONG_INPUT; return;
   }
 
   // save color on player sequence
@@ -64,9 +71,14 @@ void buttonPressedCommand(byte packedInput) { // stInput input
 
   // check increment of current level & change to sequence mode
   if (playerPosition == currentLevel) {
-    clearPlayerSequence();
     currentLevel++;
+    clearPlayerSequence();
     gameMode = eGameMode::SEQUENCE_MODE;
+  }
+
+  // check game completed
+  if (currentLevel == GAME_LEVELS) {
+    gameMode = eGameMode::ENDING;
   }
 }
 
@@ -85,17 +97,38 @@ void showColorCommand(eColor color) {
   }
 }
 
-void beepCommand(byte frecuency, byte duration) {
+void toneCommand(byte frecuency, byte duration) {
 
-  tone(BUZZER, frecuency * FRECUENCY_MULTIPLIER, duration * DURATION_MULTIPLIER);
+  tone(BUZZER, frecuency * FRECUENCY_FACTOR, duration * DURATION_FACTOR);
 }
 
-void endingCommand() {
+void wrongInputCommand() {
 
   digitalWrite(LED_RED, HIGH);
   digitalWrite(LED_BLUE, HIGH);
   digitalWrite(LED_YELLOW, HIGH);
   digitalWrite(LED_GREEN, HIGH);
+}
+
+// auxiliar functions
+void buildRandomColorSequence() {
+  
+  for (byte i = 0; i < GAME_LEVELS; i++)
+    colorSequence[i] = (eColor)random(1, 5);
+}
+
+byte getPlayerSequencePosition() {
+
+  for (byte i = 0; i < GAME_LEVELS; i++)
+    if (playerSequence[i] == eColor::NONE) { return i; }
+  return 0;
+}
+
+void clearPlayerSequence() {
+
+  for (byte i = 0; i < GAME_LEVELS; i++) {
+    playerSequence[i] = eColor::NONE;
+  }
 }
 
 #endif

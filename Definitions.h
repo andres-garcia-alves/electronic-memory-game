@@ -1,8 +1,6 @@
 #ifndef DEFINITIONS_H
 #define DEFINITIONS_H
 
-#define DEBUG           false
-
 // digit-selector & display 7-segment pins
 #define DISPLAY_DIGIT_1 6   // left digit
 #define DISPLAY_DIGIT_0 13  // right digit
@@ -30,18 +28,20 @@
 
 // misc
 #define GAME_LEVELS     50  // less than 600 free bytes of dynamic memory turns into a stack overflow
-#define QUEUE_SIZE      (GAME_LEVELS * 3 + 5)
+#define QUEUE_SIZE      155 // GAME_LEVELS * 3 + 5
 
-#define FRECUENCY_MULTIPLIER  10
-#define DURATION_MULTIPLIER   10
+#define FRECUENCY_FACTOR  10
+#define DURATION_FACTOR   10
 
 // enums
-enum class eCmdType : byte { RESET = 0, GAME_MODE = 1, WAIT = 2, DEBOUNCE = 3, BUTTON = 4, LED = 5, BEEP = 6, END = 7 };
-enum class eColor : byte { NONE = 0, RED = 1, BLUE = 2, YELLOW = 3, GREEN = 4 };
-enum class eTone : byte { WRONG = 10, RED = 50, BLUE = 60, YELLOW = 70, GREEN = 80 };               // values x 10
-enum class eWait : byte { ZERO = 0, DEBOUNCE = 5, ANIMATION = 40, BEGINNING = 150, ENDING = 255 };  // values x 10
+enum class eGameMode : byte { NONE = 0, STARTING = 1, SEQUENCE_MODE = 2, PLAYER_MODE = 3, WRONG_INPUT = 4, ENDING = 5 };
 
-enum class eGameMode : byte { NONE = 0, START = 1, SEQUENCE_MODE = 2, PLAYER_MODE = 3, FINISH = 4 };
+enum class eCmdType : byte { INIT = 0, GAME_MODE = 1, WAIT = 2, DEBOUNCE = 3, BUTTON = 4, LED = 5, BEEP = 6, WRONG = 7, END = 8 };
+enum class eWait : byte { ZERO = 0, DEBOUNCE = 5, ANIM_HALF = 20, ANIM_FULL = 40, START = 150, WRONG = 255 }; // values x 10
+enum class eColor : byte { NONE = 0, RED = 1, BLUE = 2, YELLOW = 3, GREEN = 4 };
+
+enum class eToneFrecuency : byte { WRONG = 10, RED = 50, BLUE = 60, YELLOW = 70, GREEN = 80 };  // values x 10
+enum class eToneDuration : byte { ANIM_HALF = 20, ANIM_FULL = 40, WRONG = 255, END = 255 };     // values x 10
 
 // data structures
 struct stInput { bool hasData; bool redButton; bool blueButton; bool yellowButton; bool greenButton; };
@@ -51,7 +51,7 @@ struct stCommand { eCmdType cmdType; eWait wait; eGameMode gameMode; byte input;
 // variables
 bool debounced;
 byte currentLevel;
-eGameMode gameMode = eGameMode::START;
+eGameMode gameMode = eGameMode::STARTING;
 eColor colorSequence[GAME_LEVELS];
 eColor playerSequence[GAME_LEVELS];
 
