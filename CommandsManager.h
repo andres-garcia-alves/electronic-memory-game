@@ -26,17 +26,17 @@ bool runCommands()
   stCommand command = _queue.pop();
 
   _commandRunning = true;
-  _commandEndMillis = _currentMillis + (byte)command.wait * DURATION_MULTIPLIER;
+  _commandEndMillis = _currentMillis + (byte)command.wait * DURATION_FACTOR;
 
   switch(command.cmdType) {
-    case eCmdType::RESET:     initializeCommand();                  break;
+    case eCmdType::INIT:      initializeCommand();                  break;
     case eCmdType::GAME_MODE: gameModeCommand(command.gameMode);    break;
     case eCmdType::WAIT:      waitOperationCommand();               break;
     case eCmdType::DEBOUNCE:  debounceFlagCommand();                break;
     case eCmdType::BUTTON:    buttonPressedCommand(command.input);  break;
     case eCmdType::LED:       showColorCommand(command.color);      break;
-    case eCmdType::BEEP:      beepCommand(command.buzzer.frecuency, command.buzzer.duration); break;
-    case eCmdType::END:       endingCommand();                      break;
+    case eCmdType::BEEP:      toneCommand(command.buzzer.frecuency, command.buzzer.duration); break;
+    case eCmdType::WRONG:     wrongInputCommand();                  break;
   }
 
   return true;
