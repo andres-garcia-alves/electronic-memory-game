@@ -16,7 +16,7 @@ void updateDisplay(byte currentLevel) {
   digitalWrite(DISPLAY_DIGIT_1, (currentDigit == 0) ? LOW : HIGH);  // right digit
 
   // build string to display
-  String currentLevelText = (currentLevel < 10) ? "0" + String(currentLevel) : "";
+  String currentLevelText = (currentLevel < 10) ? "0" + String(currentLevel) : String(currentLevel);
   if (currentLevel == GAME_LEVELS)  { currentLevelText = "--"; }
 
   // display character for the current digit
