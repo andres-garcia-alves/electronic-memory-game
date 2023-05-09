@@ -38,7 +38,7 @@ This project use the following electronic components:
 |------------------------------------------------|------------------------------------------------|
 | ![](Resources/13-project-final.jpg)            | [![](Resources/14-project-final.jpg)](https://youtu.be/qu201MSCXys) |
 
-See 'Rescources' sub-folder for more pictures of the proyect.
+See 'Rescources' sub-folder for more pictures & videos of the project.
 
 &nbsp;
 
@@ -53,4 +53,4 @@ Version 1.4, 2023.03.18 - Adding game finished sequence.
 &nbsp;
 
 This source code is licensed under GPL v3.0  
-Please send me your feedback about this app: andres.garcia.alves@gmail.com
+Please send me your feedback about this project: andres.garcia.alves@gmail.com
